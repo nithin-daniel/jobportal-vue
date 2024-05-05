@@ -269,7 +269,7 @@ export default {
                             <div class="single-testimonial">
                                 <div class="testimonial-author">
                                     <div class="testimonial-avatar">
-                                        <img src="../src/assets/images/testimonial/testimonial-1.png" alt="">
+                                        <img src="../assets/images/testimonial/testimonial-1.png" alt="">
                                     </div>
                                     <div class="testimonial-meta">
                                         <h5 class="name">Aayush G</h5>
@@ -299,7 +299,7 @@ export default {
                             <div class="single-testimonial">
                                 <div class="testimonial-author">
                                     <div class="testimonial-avatar">
-                                        <img src="../src/assets/images/testimonial/testimonial-3.jpg" alt="">
+                                        <img src="../assets/images/testimonial/testimonial-3.jpg" alt="">
                                     </div>
                                     <div class="testimonial-meta">
                                         <h5 class="name">Devamanas</h5>
@@ -336,7 +336,7 @@ export default {
                             <!-- Single Funfact Start -->
                             <div class="single-funfact">
                                 <div class="icon-img">
-                                    <img src="../src/assets/images/icons/candidates.png" alt="">
+                                    <img src="../assets/images/icons/candidates.png" alt="">
                                 </div>
                                 <div class="funfact-content">
                                     <span class="counter">87,360</span>
@@ -350,7 +350,7 @@ export default {
                             <!-- Single Funfact Start -->
                             <div class="single-funfact">
                                 <div class="icon-img">
-                                    <img src="../src/assets/images/icons/total-jobs.png" alt="">
+                                    <img src="../assets/images/icons/total-jobs.png" alt="">
                                 </div>
                                 <div class="funfact-content">
                                     <span class="counter">20,258</span>
@@ -364,7 +364,7 @@ export default {
                             <!-- Single Funfact Start -->
                             <div class="single-funfact">
                                 <div class="icon-img">
-                                    <img src="../src/assets/images/icons/employers.png" alt="">
+                                    <img src="../assets/images/icons/employers.png" alt="">
                                 </div>
                                 <div class="funfact-content">
                                     <span class="counter">8,650</span>
@@ -378,7 +378,7 @@ export default {
                             <!-- Single Funfact Start -->
                             <div class="single-funfact">
                                 <div class="icon-img">
-                                    <img src="../src/assets/images/icons/job-applications.png" alt="">
+                                    <img src="../assets/images/icons/job-applications.png" alt="">
                                 </div>
                                 <div class="funfact-content">
                                     <span class="counter">50,299</span>
