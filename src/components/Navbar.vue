@@ -106,7 +106,7 @@
                                         <div class="col-6 col-md-6">
                                             <div class="header-logo text-center">
                                                 <a href="index.html">
-                                                    <img src="../src/assets/images/logo-mobile.png" class="img-fluid"
+                                                    <img src="../assets/images/logo-mobile.png" class="img-fluid"
                                                         alt="">
                                                 </a>
                                             </div>

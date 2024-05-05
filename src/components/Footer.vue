@@ -23,9 +23,9 @@
                             </div>
                             <div class="phone theme-color">(+91)7592865677</div>
                             <div class="footer-widget-image d-flex mt-35">
-                                <a class="mr-5" href="#"><img src="../src/assets/images/app-store/app-store-2.png"
+                                <a class="mr-5" href="#"><img src="../assets/images/app-store/app-store-2.png"
                                         alt=""></a>
-                                <a href="#"><img src="../src/assets/images/app-store/app-chplay-2.png" alt=""></a>
+                                <a href="#"><img src="../assets/images/app-store/app-chplay-2.png" alt=""></a>
                             </div>
                         </div>
                         <!-- Footer Widget End -->
