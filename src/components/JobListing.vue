@@ -32,8 +32,8 @@ export default {
         async getprofile() {
             const db = getFirestore();
 
-            const worksQuery = query(collection(db, "works"));
-            const worksSnapshot = await getDocs(query(worksQuery));
+            const worksQuery = query(collection(db, "works"), where("user", "!=", localStorage.user_id));
+            const worksSnapshot = await getDocs(worksQuery);
             worksSnapshot.forEach((doc) => {
                 this.worksArr.push(doc.data());
             });
