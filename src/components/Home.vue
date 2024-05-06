@@ -269,7 +269,7 @@ export default {
                             <div class="single-testimonial">
                                 <div class="testimonial-author">
                                     <div class="testimonial-avatar">
-                                        <img src="../assets/images/testimonial/testimonial-1.png" alt="">
+                                        <!-- <img src="../assets/images/testimonial/testimonial-1.png" alt=""> -->
                                     </div>
                                     <div class="testimonial-meta">
                                         <h5 class="name">Aayush G</h5>
@@ -299,7 +299,7 @@ export default {
                             <div class="single-testimonial">
                                 <div class="testimonial-author">
                                     <div class="testimonial-avatar">
-                                        <img src="../assets/images/testimonial/testimonial-3.jpg" alt="">
+                                        <!-- <img src="../assets/images/testimonial/testimonial-3.jpg" alt=""> -->
                                     </div>
                                     <div class="testimonial-meta">
                                         <h5 class="name">Devamanas</h5>
