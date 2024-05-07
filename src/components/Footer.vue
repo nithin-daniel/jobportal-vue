@@ -22,11 +22,11 @@
                                 <span>workease.com</span>
                             </div>
                             <div class="phone theme-color">(+91)7592865677</div>
-                            <div class="footer-widget-image d-flex mt-35">
+                            <!-- <div class="footer-widget-image d-flex mt-35">
                                 <a class="mr-5" href="#"><img src="../assets/images/app-store/app-store-2.png"
                                         alt=""></a>
                                 <a href="#"><img src="../assets/images/app-store/app-chplay-2.png" alt=""></a>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Footer Widget End -->
                     </div>
@@ -43,32 +43,7 @@
                         <!-- Footer Widget End -->
                     </div>
 
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <!-- Footer Widget Start -->
-                        <div class="footer-widget mb-30">
-                            <h6 class="title">Newsletter</h6>
-                            <div class="newsletter">
-                                <p>Join our email subscription now to get updates on <strong>new jobs</strong>
-                                    and
-                                    <strong>notifications</strong>.
-                                </p>
-                                <div class="newsletter-form">
-                                    <form id="mc-form" class="mc-form">
-                                        <input type="email" placeholder="Enter Your email..." name="EMAIL">
-                                        <button class="ht-btn small-btn" type="submit" value="submit">Subscribe</button>
-                                    </form>
-                                </div>
-                                <!-- mailchimp-alerts Start -->
-                                <div class="mailchimp-alerts">
-                                    <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                                    <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                                    <div class="mailchimp-error"></div><!-- mailchimp-error end -->
-                                </div>
-                                <!-- mailchimp-alerts end -->
-                            </div>
-                        </div>
-                        <!-- Footer Widget End -->
-                    </div>
+                    
                 </div>
             </div>
         </div>
