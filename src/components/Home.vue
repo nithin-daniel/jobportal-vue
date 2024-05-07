@@ -168,8 +168,8 @@ export default {
                                     <i class="far fa-address-card"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h3 class="title">Complete Resume</h3>
-                                    <p>Create resume free & get a job</p>
+                                    <h3 class="title">User friendly</h3>
+                                    <p>User Friendly company</p>
                                 </div>
                             </div>
                             <!-- Single Feature End -->
