@@ -49,7 +49,12 @@ export default {
         const id = this.$route.params.id;
         this.getprofile(id)
     },
-
+    computed: {
+        currentDateTime() {
+            const now = new Date();
+            return now.toISOString().slice(0, 16); // Format to 'YYYY-MM-DDTHH:MM'
+        }
+    },
 
     methods: {
         async getprofile(id) {
@@ -152,11 +157,11 @@ export default {
                 // console.log("Array of booked times:", this.arr);
                 const plainArr = Array.from(this.arr);
                 console.log("Array of booked times:", plainArr);
-                console.log(this.dateandtime.slice(0,10));
-                if (this.arr.includes(this.dateandtime.slice(0,10))){
+                console.log(this.dateandtime.slice(0, 10));
+                if (this.arr.includes(this.dateandtime.slice(0, 10))) {
                     this.validated = true;
                     console.log(true);
-                }else {
+                } else {
                     this.booking = true;
                     this.book(); // If the time is not booked, proceed with booking
                     console.log("Book Function");
@@ -341,12 +346,12 @@ export default {
 
                                     <label for="dateandtime">Date & Time</label>
                                     <br>
-                                    <input type="datetime-local" v-model="dateandtime" required>
+                                    <input type="datetime-local" v-model="dateandtime" :min="currentDateTime" required>
                                     <br>
                                     <br>
-                                    <p v-if="validated" style="color: red;" >This date already booked</p>
-                                    
-                                    <p v-if="booking" style="color: green;" >Booking Please Wait</p>
+                                    <p v-if="validated" style="color: red;">This date already booked</p>
+
+                                    <p v-if="booking" style="color: green;">Booking Please Wait</p>
                                     <br>
                                     <button class="ht-btn text-center" :disabled="!dateandtime"
                                         :class="{ 'ht-btn--disabled': !dateandtime }" @click="validate">Book Now
