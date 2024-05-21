@@ -57,7 +57,7 @@ const addWork = async () => {
             <div class="single-input pb-2">
                 <label for="">Job Type</label>
                 <select name="cars" id="cars" v-model="job_type">
-                    <option value="parttimr" selected>Part Time</option>
+                    <!-- <option value="parttime" selected>Part Time</option> -->
                     <option value="household">House Hold</option>
                 </select>
             </div>
