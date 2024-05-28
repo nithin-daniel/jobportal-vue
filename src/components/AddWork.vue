@@ -14,6 +14,7 @@ const skills = ref('')
 const job_type = ref('')
 const job_name = ref('')
 const jobdescription = ref('')
+const location = ref('')
 import { v4 as uuidv4 } from 'uuid';
 const addWork = async () => {
     const docRef = await addDoc(collection(db, "works"), { 
@@ -26,7 +27,8 @@ const addWork = async () => {
         job_type:job_type.value,
         job_name:job_name.value,
         jobdescription:jobdescription.value,
-        profile_pic:localStorage.profile_url
+        profile_pic:localStorage.profile_url,
+        location:location.value
     }).then(()=>{
         router.push('/')
     })
@@ -53,6 +55,9 @@ const addWork = async () => {
             </div>
             <div class="single-input">
                 <input type="text" placeholder="Skills" name="skills" id="skills" required v-model="skills">
+            </div>
+            <div class="single-input">
+                <input type="text" placeholder="Location" name="location" id="location" required v-model="location">
             </div>
             <div class="single-input pb-2">
                 <label for="">Job Type</label>
