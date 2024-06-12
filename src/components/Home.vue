@@ -2,7 +2,7 @@
 import Footer from './Footer.vue';
 import Navbar from './Navbar.vue';
 
-import { collection, getDocs, addDoc, query, where,limit } from "firebase/firestore";
+import { collection, getDocs, addDoc, query, where, limit } from "firebase/firestore";
 import { getFirestore } from 'firebase/firestore'
 
 
@@ -14,7 +14,9 @@ export default {
     data() {
         return {
             arr: [],
-            showSearch: false
+            showSearch: true,
+            location: '',
+            error: false,
         }
     },
     created() {
@@ -24,11 +26,42 @@ export default {
         async getprofile() {
             const db = getFirestore();
             const q = query(collection(db, "works"));
-            const querySnapshot = await getDocs(query(q,limit(10))); //, where("user", "!=", localStorage.user_id)
+            const querySnapshot = await getDocs(query(q, limit(10))); //, where("user", "!=", localStorage.user_id)
             querySnapshot.forEach((doc) => {
                 const documentWithId = { id: doc.id, ...doc.data() };
                 this.arr.push(documentWithId);
             });
+        },
+        async handleClick() {
+            this.arr = []
+            const locationInput = this.$refs.locationInput;
+            if (!locationInput.validity.valid) {
+                alert("Location Field Required")
+                return;
+            }
+            this.$refs.sectionTitle.scrollIntoView({ behavior: 'smooth' });
+            const db = getFirestore();
+            const q = query(collection(db, "works"));
+            const querySnapshot = await getDocs(query(q, where("location", "==", this.location))); //, where("user", "!=", localStorage.user_id)
+            if (!querySnapshot.empty) {
+                // this.arr = []
+                // this.arr = []
+                // const existingIds = new Set(this.arr.map(item => item.id));
+                querySnapshot.forEach((doc) => {
+                    const documentWithId = { id: doc.id, ...doc.data() };
+                    // this.arr.push(documentWithId);
+                    const existingDocument = this.arr.find(item => item.id === documentWithId.id);
+                    console.log(existingDocument);
+                    if (!existingDocument) {
+                        // Push the document data to the arr array if it doesn't exist
+                        this.arr.push(documentWithId);
+                    }
+                });
+                this.getprofile();
+                console.log(this.arr);
+            } else {
+                // this.error = true;
+            }
         }
     }
 }
@@ -77,8 +110,8 @@ export default {
                     </div>
                     <div class="content-popup-scroll">
                         <ul class="list-item">
-                            <li><a href=""><i class="lnr lnr-book"></i><span><b
-                                            class="highlight">Register now</b> to reach dream jobs easier.</span> </a>
+                            <li><a href=""><i class="lnr lnr-book"></i><span><b class="highlight">Register now</b> to
+                                        reach dream jobs easier.</span> </a>
                             </li>
                             <li><a href=""><i class="lnr lnr-book"></i><span><b class="highlight">Job
                                             suggestion</b> you might be interested based on your profile.</span> </a>
@@ -110,30 +143,31 @@ export default {
                                             <div class="job-search-form">
                                                 <form action="#">
                                                     <div class="row row-5">
-                                                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                                                            <!-- Single Field Item Start  -->
-                                                            <div class="single-field-item">
+                                                        <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-12"> -->
+                                                        <!-- Single Field Item Start  -->
+                                                        <!-- <div class="single-field-item">
                                                                 <i class="lnr lnr-magnifier"></i>
                                                                 <input placeholder="What jobs you want?" name="keyword"
                                                                     type="text">
-                                                            </div>
-                                                            <!-- Single Field Item End  -->
-                                                        </div>
+                                                            </div> -->
+                                                        <!-- Single Field Item End  -->
+                                                        <!-- </div> -->
 
                                                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                                             <!-- Single Field Item Start  -->
                                                             <div class="single-field-item">
                                                                 <i class="lnr lnr-map-marker"></i>
-                                                                <input class="input-field input-field-location"
-                                                                    placeholder="Location" name="location" type="text">
-                                                                <span class="btn-action-location">
-                                                                    <i class="far fa-dot-circle"></i>
-                                                                </span>
+                                                                <div>
+                                                                    <input class="input-field input-field-location"
+                                                                        placeholder="Location" type="text"
+                                                                        v-model="location" required=""
+                                                                        ref="locationInput" />
+                                                                </div>
                                                             </div>
                                                             <!-- Single Field Item End  -->
                                                         </div>
                                                         <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                                                            <div class="submit-btn">
+                                                            <div class="submit-btn" @click.prevent="handleClick">
                                                                 <button class="ht-btn" type="submit"> Search</button>
                                                             </div>
                                                         </div>
@@ -206,12 +240,12 @@ export default {
             <!-- Feature Section End -->
 
             <!-- Featured Employer Start -->
-            <div class="featured-employer section pt-115 pt-lg-95 pt-md-75 pt-sm-55 pt-xs-45">
+            <div class="featured-employer section pt-115 pt-lg-95 pt-md-75 pt-sm-55 pt-xs-45" id="jobs-list">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-title-wrap mb-45">
-                                <div class="section-title">
+                                <div class="section-title" ref="sectionTitle">
                                     <!-- <span>JOB FROM EMPLOYERS</span> -->
                                     <h3 class="title">Job From Employers</h3>
                                 </div>
@@ -222,17 +256,21 @@ export default {
                         </div>
                     </div>
                     <div class="row row-five-column g-0 border-top-left">
-                        <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6" v-for="item in arr" :key="item.id">
+                        <div v-if="error">
+                            <!-- Message to display when the arr is empty -->
+                            <h1>No Jobs Found</h1>
+                        </div>
+                        <div v-else class="col-xl-2 col-lg-3 col-md-6 col-sm-6" v-for="item in arr" :key="item.id">
                             <!-- Single Employer Item Start -->
                             <div class="employer-item item-border-bottom">
                                 <span class="featured-employer-label">{{ item.designation }}</span>
                                 <div class="employer-image">
-                                    <img :src= "item.profile_pic" alt="">
+                                    <img :src="item.profile_pic" alt="">
                                 </div>
                                 <div class="employer-info-top">
-                                    <span class="employer-location"><i class="lnr lnr-map-marker"></i>Kerala
-                                        </span>
-                                    <h3 class="employer-name"><a :href="'/job-details/'+item.id">{{ item.job_name }}</a></h3>
+                                    <span class="employer-location"><i class="lnr lnr-map-marker"></i>Kerala </span>
+                                    <h3 class="employer-name"><a :href="'/job-details/' + item.id">{{ item.job_name
+                                            }}</a></h3>
                                 </div>
                             </div>
                             <!-- Single Employer Item End -->
@@ -455,7 +493,7 @@ export default {
                         <div class="col-xl-2 col-20">
                             <!-- Single Brand Start  -->
                             <div class="single-brand">
-                                
+
                             </div>
                             <!-- Single Brand End -->
                         </div>
@@ -516,7 +554,8 @@ export default {
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 mb-25"><button
-                                                                        class="ht-btn">Login</button></div>
+                                                                        class="ht-btn">Login</button>
+                                                                </div>
                                                             </div>
                                                         </form>
                                                         <div class="divider">
@@ -526,11 +565,14 @@ export default {
                                                         <div class="social-login">
                                                             <ul class="social-icon">
                                                                 <li><a class="facebook" href="#"><i
-                                                                            class="fab fa-facebook"></i></a></li>
+                                                                            class="fab fa-facebook"></i></a>
+                                                                </li>
                                                                 <li><a class="twitter" href="#"><i
-                                                                            class="fab fa-twitter"></i></a></li>
+                                                                            class="fab fa-twitter"></i></a>
+                                                                </li>
                                                                 <li><a class="linkedin" href="#"><i
-                                                                            class="fab fa-linkedin"></i></a></li>
+                                                                            class="fab fa-linkedin"></i></a>
+                                                                </li>
                                                                 <li><a class="google" href="#"><i
                                                                             class="fab fa-google-plus"></i></a></li>
                                                             </ul>
@@ -599,7 +641,8 @@ export default {
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 mb-25"><button
-                                                                        class="ht-btn">Register</button></div>
+                                                                        class="ht-btn">Register</button>
+                                                                </div>
                                                             </div>
                                                         </form>
                                                         <div class="divider">
@@ -609,11 +652,14 @@ export default {
                                                         <div class="social-login">
                                                             <ul class="social-icon">
                                                                 <li><a class="facebook" href="#"><i
-                                                                            class="fab fa-facebook"></i></a></li>
+                                                                            class="fab fa-facebook"></i></a>
+                                                                </li>
                                                                 <li><a class="twitter" href="#"><i
-                                                                            class="fab fa-twitter"></i></a></li>
+                                                                            class="fab fa-twitter"></i></a>
+                                                                </li>
                                                                 <li><a class="linkedin" href="#"><i
-                                                                            class="fab fa-linkedin"></i></a></li>
+                                                                            class="fab fa-linkedin"></i></a>
+                                                                </li>
                                                                 <li><a class="google" href="#"><i
                                                                             class="fab fa-google-plus"></i></a></li>
                                                             </ul>
