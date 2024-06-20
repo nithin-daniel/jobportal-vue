@@ -13,7 +13,7 @@ export default {
     },
     data() {
         return {
-            arr: [],
+            arr: new Set(),
             showSearch: true,
             location: '',
             error: false,
@@ -29,7 +29,7 @@ export default {
             const querySnapshot = await getDocs(query(q, limit(10))); //, where("user", "!=", localStorage.user_id)
             querySnapshot.forEach((doc) => {
                 const documentWithId = { id: doc.id, ...doc.data() };
-                this.arr.push(documentWithId);
+                this.arr.add(documentWithId);
             });
         },
         async handleClick() {
