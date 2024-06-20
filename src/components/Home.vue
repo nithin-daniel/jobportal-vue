@@ -268,7 +268,7 @@ export default {
                                     <img :src="item.profile_pic" alt="">
                                 </div>
                                 <div class="employer-info-top">
-                                    <span class="employer-location"><i class="lnr lnr-map-marker"></i>Kerala </span>
+                                    <span class="employer-location"><i class="lnr lnr-map-marker"></i>{{ item.location }} </span>
                                     <h3 class="employer-name"><a :href="'/job-details/' + item.id">{{ item.job_name
                                             }}</a></h3>
                                 </div>
