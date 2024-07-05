@@ -26,9 +26,15 @@
                                         <li><a href="/">Home <small class="icon-arrow"></small></a>
 
                                         </li>
-                                        <li><a href="/jobs"><span class="label-status hot"></span>Jobs <small
-                                                    class="icon-arrow"></small></a>
-                                        </li>
+                                        <li v-if="isCompany" class="jp-author item">
+                                            <!-- <div class="jp-author item"> -->
+                                                <a href="/my-jobs">
+                                                    <i class="lnr lnr-job"></i>
+                                                    <span>My Jobs</span>
+
+                                                </a>
+                                            <!-- </div> -->
+                                                </li>
                                         <!-- <li><a href="/candidates"><span class="label-status new"></span>
                                                 Candidates <small class="icon-arrow"></small></a>
                                         </li> -->
@@ -126,7 +132,8 @@
                                                         <li>
                                                             <div v-if="isCompany">
                                                                 <a href="/add-work">
-                                                                    <h6 style="color: #fff; margin-bottom: -5px;">Add Work
+                                                                    <h6 style="color: #fff; margin-bottom: -5px;">Add
+                                                                        Work
                                                                     </h6>
                                                                 </a>
                                                             </div>
@@ -139,8 +146,8 @@
                                                                 </a>
                                                             </div>
                                                         </li> -->
-                                                        
-                                                        
+
+
                                                         <li>
                                                             <div class="header-cart-icon">
                                                                 <a href="#" class="header-search-toggle"><i
