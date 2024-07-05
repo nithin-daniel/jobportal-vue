@@ -34,7 +34,16 @@
 
                                                 </a>
                                             <!-- </div> -->
-                                                </li>
+                                        </li>
+                                        <li v-else class="jp-author item">
+                                            <!-- <div class="jp-author item"> -->
+                                                <a href="/jobs">
+                                                    <i class="lnr lnr-job"></i>
+                                                    <span>Jobs</span>
+
+                                                </a>
+                                            <!-- </div> -->
+                                        </li>
                                         <!-- <li><a href="/candidates"><span class="label-status new"></span>
                                                 Candidates <small class="icon-arrow"></small></a>
                                         </li> -->
