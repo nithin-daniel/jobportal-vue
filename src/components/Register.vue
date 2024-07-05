@@ -64,11 +64,11 @@
                                         <div class="col-11">
                                             <div class="checkbox-input">
                                                 <input type="radio" name="login-form" id="login-form-candidate">
-                                                <label for="login-form-candidate">I am a company</label>
+                                                <label for="login-form-candidate">I am a House Hold Worker</label>
 
                                                 <input type="radio" name="login-form" id="login-form-employer"
                                                     v-model="designation">
-                                                <label for="login-form-employer">I am a employer</label>
+                                                <label for="login-form-employer">I am a User</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
