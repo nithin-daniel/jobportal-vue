@@ -19,6 +19,7 @@ import CandidateListing from './components/CandidateListing.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 import AddWork from './components/AddWork.vue';
+import MyJobs from './components/MyJobs.vue';
 
 const routes = [
     {path:'/',component:Home},
@@ -29,6 +30,8 @@ const routes = [
     {path:'/login/',component:Login},
     {path:'/register/',component:Register},
     {path:'/add-work/',component:AddWork},
+    {path:'/my-jobs/',component:MyJobs},
+
 
 ]
 const router = createRouter({

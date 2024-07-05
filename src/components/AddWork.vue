@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from './Navbar.vue';
 import Footer from './Footer.vue';
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { collection, addDoc, getFirestore, updateDoc } from "firebase/firestore";
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,8 +20,9 @@ const addWork = async (event) => {
     event.preventDefault(); // Prevent the default form submission
     if (overview.value && skills.value && job_type.value && job_name.value && jobdescription.value && location.value) {
         try {
-            await addDoc(collection(db, "works"), {
-                id: uuidv4(),
+            const uniqueId = uuidv4();
+            const docRef = await addDoc(collection(db, "works"), {
+                id: uniqueId,
                 name: localStorage.name,
                 user: localStorage.user_id,
                 email: localStorage.user_email,
@@ -33,6 +34,10 @@ const addWork = async (event) => {
                 profile_pic: localStorage.profile_url,
                 location: location.value
             });
+            const updatedData = {
+                work_id:uniqueId
+            }
+            await updateDoc(docRef, updatedData)
             router.push('/');
         } catch (error) {
             console.error("Error adding document: ", error);
